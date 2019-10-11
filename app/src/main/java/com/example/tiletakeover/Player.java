@@ -7,5 +7,6 @@ public class Player {
         System.out.println("commit then push");
 
         System.out.println("this is a test");
+        System.out.println("this is a test1");
     }
 }
