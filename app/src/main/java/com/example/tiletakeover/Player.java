@@ -93,14 +93,15 @@ public class Player {
     }
 
 
-
+    /**
+    /**
+     * @return the player's current position on the board
+     */
     public int getPosition(){
 
         return this.position;
     }
-    /**
-     * @return the player's current position on the board
-     */
+
 
 
 
