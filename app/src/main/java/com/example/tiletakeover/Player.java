@@ -1,12 +1,24 @@
 package com.example.tiletakeover;
 
+
+import android.util.Log;
+
 public class Player {
+
+    /**
+     * the winning tile position is 25, within a array of 49 tiles
+     * the total number of possible moves in any direction is 8, two for each direction
+     */
+    final int WIN_TILE_POS = 25;
+    final int MAX_NUM_MOVES = 8;
+
 
     String playerName;
     int position;
-    int[]posMoves;
+    int[] posMoves;
     boolean winTile;
     boolean pass;
+
     /**
      * playerName represents the name that will be displayed for each player
      * position represents the integer position of each player on the board
@@ -16,7 +28,87 @@ public class Player {
      */
 
 
-    public Player(){
+    public Player(String name) {
 
+        this.playerName = name;
+        this.position = 0;
+        posMoves = new int [8];
+        winTile = false;
+        pass = false;
+
+    }
+    /**
+     * checks the winTile flag, which indicates if the winning tile has been acheived
+     * if the winning tile has been acheived, winTile will be set to true, ptherwise,
+     * it will be set to false
+     *
+     * @return the updated winTile flag
+     */
+    public boolean checkWin() {
+
+        if (this.position == WIN_TILE_POS) {
+            this.winTile = true;
+
+        }
+        else{
+            this.winTile = false;
+        }
+        return this.winTile;
+    }
+
+
+    /**
+     * used to update the possible moves for a player
+     * @param moveSet is the list of new moves
+     */
+    public void setPosMoves(int[] moveSet){
+
+    }
+
+
+    public void move(){
+
+        pass = true;
+    }
+
+
+    /**
+     *  method used to get player's name
+     * @return player's assigned name
+     */
+    public String getPlayerName(){
+
+        return this.playerName;
+
+    }
+
+
+    /**
+     * used to set the active player's position.
+     * @param pos
+     */
+    public void setPosition(int pos){
+
+        this.position = pos;
+    }
+
+
+
+    public int getPosition(){
+
+        return this.position;
+    }
+    /**
+     * @return the player's current position on the board
+     */
+
+
+
+
+    public static void main(String[]args){
+
+        Player p1 = new Player("Player 1");
+        p1.setPosition(12);
+        //Log.d("infoTag 1","Player position: "+String.valueOf(p1.getPosition()) );
     }
 }
