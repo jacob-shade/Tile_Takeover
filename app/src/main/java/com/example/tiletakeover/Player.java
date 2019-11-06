@@ -106,10 +106,10 @@ public class Player {
 
 
 
-    public static void main(String[]args){
-
-        Player p1 = new Player("Player 1");
-        p1.setPosition(12);
-        //Log.d("infoTag 1","Player position: "+String.valueOf(p1.getPosition()) );
-    }
+//    public static void main(String[]args){
+//
+//        Player p1 = new Player("Player 1");
+//        p1.setPosition(12);
+//        //Log.d("infoTag 1","Player position: "+String.valueOf(p1.getPosition()) );
+//    }
 }
