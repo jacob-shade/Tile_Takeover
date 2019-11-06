@@ -1,5 +1,6 @@
 package com.example.tiletakeover;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,29 +11,51 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 
-public class ExampleUnitTest {
+public class PlayerTest {
 
-    Player P1 = new Player("rob");
+
+    private Player P1 = new Player("rob");
+
+    @Before
+    public void setUp()
+    {
+        P1.setPosition(0);
+    }
 
     @Test
     public void checkWin()
     {
-        assertEquals(false, P1.checkWin());
+
+        assertFalse( P1.checkWin());
     }
 
 
+    @Test
+    public void checkWin2()
+    {
+        P1.setPosition(25);
+        assertTrue(P1.checkWin());
+    }
 
     @Test
     public void getPosition()
     {
+
         assertEquals(0, P1.getPosition());
     }
 
    @Test
-   public void setPosition(){
+   public void setPosition()
+   {
         P1.setPosition(25);
         assertEquals(25, P1.getPosition());
    }
+
+    @Test
+    public void getPlayerName()
+    {
+        assertEquals("rob", P1.getPlayerName());
+    }
 
 
 
