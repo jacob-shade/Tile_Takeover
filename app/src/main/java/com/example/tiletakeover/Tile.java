@@ -14,7 +14,7 @@ public class Tile {
     private boolean hasPlayer;
     private boolean winningTile;
     private boolean isPlatform;
-    private int posistion;
+    private int position;
 
 
     /**
@@ -50,7 +50,7 @@ public class Tile {
      * @param pos is the position that is assigned to the tile, given from the board
      */
     void setPosition(int pos){
-        this.posistion = pos;
+        this.position = pos;
     }
 
 
@@ -59,7 +59,7 @@ public class Tile {
      * @return the position of the tile
      */
     int getPosition(){
-        return this.posistion;
+        return this.position;
     }
 
     /**
