@@ -8,7 +8,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class Board {
-    //comment
+
     private final int COL;
     private int DIMENSIONS;
     private static String[] boardTiles;
@@ -17,7 +17,7 @@ public class Board {
     private static GestureDetectGridView mGridView;
     private static int mTileWidth, mTileHeight;
 
-    /*
+    /**
      * Constructor for the Gameboard class.
      */
     public Board(Activity activity, Context context, int col) {
@@ -33,7 +33,6 @@ public class Board {
     private void populateBoard() {
         mGridView = (GestureDetectGridView) activity.findViewById(R.id.grid);
         mGridView.setNumColumns(COL);
-
 
         for(int i = 0; i < DIMENSIONS; i++) {
             boardTiles[i] = String.valueOf(i);
