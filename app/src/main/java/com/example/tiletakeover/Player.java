@@ -1,6 +1,5 @@
 package com.example.tiletakeover;
 
-
 public class Player {
 
     /**
@@ -9,7 +8,6 @@ public class Player {
      */
     private final int WIN_TILE_POS = 25;
     private final int MAX_NUM_MOVES = 8;
-
 
     /**
      * playerName represents the name that will be displayed for each player
@@ -23,19 +21,17 @@ public class Player {
     private int[] posMoves;
     private boolean winTile;
 
-
     /**
      * constructor for the player object
      * @param name: initializes the player's name when the object is created
      */
     public Player(String name) {
-
         this.playerName = name;
         this.position = 0;
         posMoves = new int [8];
         winTile = false;
-
     }
+
     /**
      * checks the winTile flag, which indicates if the winning tile has been achieved
      * if the winning tile has been achieved, winTile will be set to true, otherwise,
@@ -44,13 +40,11 @@ public class Player {
      * @return the updated winTile flag
      */
     public boolean checkWin() {
-
         if (this.position == WIN_TILE_POS) {
             this.winTile = true;
         }
         return this.winTile;
     }
-
 
     /**
      * used to update the possible moves for a player
@@ -60,32 +54,25 @@ public class Player {
 
     }
 
-
     public void move(){
 
     }
-
 
     /**
      *  method used to get player's name
      * @return player's assigned name
      */
     public String getPlayerName(){
-
         return this.playerName;
-
     }
-
 
     /**
      * used to set the active player's position.
      * @param pos the number that will represent the position of the player
      */
     public void setPosition(int pos){
-
         this.position = pos;
     }
-
 
     /**
     /**

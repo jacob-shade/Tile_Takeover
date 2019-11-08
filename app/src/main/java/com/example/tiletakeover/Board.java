@@ -30,8 +30,12 @@ public class Board {
         setDimensions();
     }
 
+    /**
+     * Populates the board with DIMENSIONS number of tiles.
+     * Stores string values for each of the tiles.
+     */
     private void populateBoard() {
-        mGridView = (GestureDetectGridView) activity.findViewById(R.id.grid);
+        mGridView = activity.findViewById(R.id.grid);
         mGridView.setNumColumns(COL);
 
         for(int i = 0; i < DIMENSIONS; i++) {
@@ -39,6 +43,9 @@ public class Board {
         }
     }
 
+    /**
+     * Sets the dimensions of each tile and displays them
+     */
     private void setDimensions() {
         ViewTreeObserver vto = mGridView.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -48,8 +55,8 @@ public class Board {
             int displayWidth = mGridView.getMeasuredWidth();
             int displayHeight = mGridView.getMeasuredHeight();
 
-            int statusbarHeight = getStatusBarHeight(mContext);
-            int requiredHeight = displayHeight - statusbarHeight;
+            int statusBarHeight = getStatusBarHeight(mContext);
+            int requiredHeight = displayHeight - statusBarHeight;
 
             mTileWidth = displayWidth / COL;
             mTileHeight = requiredHeight / COL;
@@ -59,23 +66,30 @@ public class Board {
         });
     }
 
+    /**
+     * Gets the height of the status bar.
+     * @param context
+     * @return height
+     */
     private int getStatusBarHeight(Context context) {
-        int result = 0;
+        int height = 0;
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimien",
                 "android");
         if(resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
+            height = context.getResources().getDimensionPixelSize(resourceId);
         }
-        return result;
+        return height;
     }
 
+    /**
+     * Displays the buttons according to their String value.
+     * @param context
+     */
     public static void display(Context context) {
         ArrayList<Button> buttons = new ArrayList<>();
         Button button;
-
         for(int i = 0; i < boardTiles.length; i++) {
             button = new Button(context);
-
             if(boardTiles[i].equals("0")) {
                 button.setBackgroundResource(R.drawable.player_tile);
             } else if (boardTiles[i].equals("1")) {
@@ -177,14 +191,26 @@ public class Board {
             } else if (boardTiles[i].equals("49")) {
                 button.setBackgroundResource(R.drawable.blank_tile);
             }
-
             buttons.add(button);
         }
-
         mGridView.setAdapter(new CustomAdapter(buttons, mTileWidth, mTileHeight));
     }
 
+    /**
+     * Gets the number of columns in the board.
+     * @return this.COL
+     */
     int getCOL() {return this.COL;}
+
+    /**
+     * Gets the dimensions of the board.
+     * @return this.DIMENSIONS
+     */
     int getDIMENSIONS() {return this.DIMENSIONS;}
+
+    /**
+     * Gets the array of board tiles.
+     * @return this.boardTiles
+     */
     String[] getBoardTiles() {return this.boardTiles;}
 }
