@@ -1,0 +1,9 @@
+10-29-19
+  Player class:
+    ADDED Player.set_position(int);
+    
+11-8-2019
+  Tile class:
+    ADDED int position;
+    ADDED Tile.setPosition(int);
+    ADDED int Tile.getPosition();
