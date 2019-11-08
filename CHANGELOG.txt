@@ -4,5 +4,6 @@
     
 11-8-2019
   Tile class:
+    ADDED int position;
     ADDED Tile.setPosition(int);
     ADDED int Tile.getPosition();
