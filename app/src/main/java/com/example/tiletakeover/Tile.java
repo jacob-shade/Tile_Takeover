@@ -14,6 +14,7 @@ public class Tile {
     private boolean hasPlayer;
     private boolean winningTile;
     private boolean isPlatform;
+    private int posistion;
 
 
     /**
@@ -28,7 +29,85 @@ public class Tile {
 
     }
 
+    /**
+     * returns the active player currently on the tile
+     */
+    Player getActivePlayer(){
+        return this.activePlayer;
+    }
 
 
+    /**
+     * sets the Active player for the tile
+     * @param P is the player who will become active on the tile
+     */
+    void setActivePlayer(Player P){
+        this.activePlayer = P;
+    }
+
+    /**
+     * sets the position that the tile holds on the board
+     * @param pos is the position that is assigned to the tile, given from the board
+     */
+    void setPosition(int pos){
+        this.posistion = pos;
+    }
+
+
+    /**
+     *
+     * @return the position of the tile
+     */
+    int getPosition(){
+        return this.posistion;
+    }
+
+    /**
+     * sets the flag of wining tile dependent on what is passed in
+     * @param t boolean that represents whether or not the tile is the wining tile or not
+     */
+    void setWinningTile(boolean t){
+        this.winningTile = t;
+    }
+
+    /**
+     *
+     * @return whether or not the tile is a winning tile
+     */
+    boolean getWinningTile(){
+        return this.winningTile;
+    }
+    /**
+     *
+     * @return whether or not the tile has a player currently on it
+     */
+    boolean getHasPlayer(){
+        return this.hasPlayer;
+    }
+
+    /**
+     * sets the hasPlayer flag to indicate whether or not there is a player on the tile
+     * @param t boolean variable that updates the hasPlayer flag
+     */
+    void setHasPlayer(boolean t){
+        this.hasPlayer = t;
+    }
+
+    /**
+     * sets the isPlatform flag to indicate whether or not the tile is a platform
+     * @param t the boolean that will update our flag
+     */
+    void setIsPlatform(boolean t){
+        this.isPlatform = t;
+    }
+
+
+    /**
+     *
+     * @return whether or not a tile is a platform
+     */
+    boolean getIsPlatform(){
+        return this.isPlatform;
+    }
 
 }
