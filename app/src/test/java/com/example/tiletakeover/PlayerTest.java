@@ -1,14 +1,16 @@
 package com.example.tiletakeover;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ *
+ * Test class that
+ *
  */
 
 public class PlayerTest {
@@ -16,12 +18,11 @@ public class PlayerTest {
 
     private Player P1 = new Player("rob");
 
-    @Before
-    public void setUp()
-    {
-        P1.setPosition(0);
-    }
 
+    /**
+     * tests the method that checks for winning condition
+     * in this case there is no win
+     */
     @Test
     public void checkWin()
     {
@@ -29,7 +30,10 @@ public class PlayerTest {
         assertFalse( P1.checkWin());
     }
 
-
+    /**
+     * tests the method that checks for winning condition
+     * in this case there is a win, the player is on the winning tile
+     */
     @Test
     public void checkWin2()
     {
@@ -37,6 +41,9 @@ public class PlayerTest {
         assertTrue(P1.checkWin());
     }
 
+    /**
+     * tests the method that returns the player's current position
+     */
     @Test
     public void getPosition()
     {
@@ -44,6 +51,9 @@ public class PlayerTest {
         assertEquals(0, P1.getPosition());
     }
 
+    /**
+     * tests the method that sets the player's position
+     */
    @Test
    public void setPosition()
    {
@@ -51,6 +61,9 @@ public class PlayerTest {
         assertEquals(25, P1.getPosition());
    }
 
+    /**
+     * tests the moethod that returns the player's name
+     */
     @Test
     public void getPlayerName()
     {
