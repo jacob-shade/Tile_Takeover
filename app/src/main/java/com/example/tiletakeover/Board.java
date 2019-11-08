@@ -44,17 +44,17 @@ public class Board {
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                int displayWidth = mGridView.getMeasuredWidth();
-                int displayHeight = mGridView.getMeasuredHeight();
+            mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            int displayWidth = mGridView.getMeasuredWidth();
+            int displayHeight = mGridView.getMeasuredHeight();
 
-                int statusbarHeight = getStatusBarHeight(mContext);
-                int requiredHeight = displayHeight - statusbarHeight;
+            int statusbarHeight = getStatusBarHeight(mContext);
+            int requiredHeight = displayHeight - statusbarHeight;
 
-                mTileWidth = displayWidth / COL;
-                mTileHeight = requiredHeight / COL;
+            mTileWidth = displayWidth / COL;
+            mTileHeight = requiredHeight / COL;
 
-                display(mContext);
+            display(mContext);
             }
         });
     }
