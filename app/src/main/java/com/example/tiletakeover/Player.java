@@ -1,23 +1,15 @@
 package com.example.tiletakeover;
 
 
-import android.util.Log;
-
 public class Player {
 
     /**
      * the winning tile position is 25, within a array of 49 tiles
      * the total number of possible moves in any direction is 8, two for each direction
      */
-    final int WIN_TILE_POS = 25;
-    final int MAX_NUM_MOVES = 8;
+    private final int WIN_TILE_POS = 25;
+    private final int MAX_NUM_MOVES = 8;
 
-
-    String playerName;
-    int position;
-    int[] posMoves;
-    boolean winTile;
-    boolean pass;
 
     /**
      * playerName represents the name that will be displayed for each player
@@ -26,20 +18,27 @@ public class Player {
      * winTile is a flag that will be used to show that the player has landed on the winning tile
      * pass is a flag that will determine when a player's turn ends
      */
+    private String playerName;
+    private int position;
+    private int[] posMoves;
+    private boolean winTile;
 
 
+    /**
+     * constructor for the player object
+     * @param name: initializes the player's name when the object is created
+     */
     public Player(String name) {
 
         this.playerName = name;
         this.position = 0;
         posMoves = new int [8];
         winTile = false;
-        pass = false;
 
     }
     /**
-     * checks the winTile flag, which indicates if the winning tile has been acheived
-     * if the winning tile has been acheived, winTile will be set to true, ptherwise,
+     * checks the winTile flag, which indicates if the winning tile has been achieved
+     * if the winning tile has been achieved, winTile will be set to true, otherwise,
      * it will be set to false
      *
      * @return the updated winTile flag
@@ -48,10 +47,6 @@ public class Player {
 
         if (this.position == WIN_TILE_POS) {
             this.winTile = true;
-
-        }
-        else{
-            this.winTile = false;
         }
         return this.winTile;
     }
@@ -68,7 +63,6 @@ public class Player {
 
     public void move(){
 
-        pass = true;
     }
 
 
@@ -85,7 +79,7 @@ public class Player {
 
     /**
      * used to set the active player's position.
-     * @param pos
+     * @param pos the number that will represent the position of the player
      */
     public void setPosition(int pos){
 
@@ -102,14 +96,12 @@ public class Player {
         return this.position;
     }
 
+    /**
+     *
+     * sets the player's name
+     */
 
-
-
-
-//    public static void main(String[]args){
-//
-//        Player p1 = new Player("Player 1");
-//        p1.setPosition(12);
-//        //Log.d("infoTag 1","Player position: "+String.valueOf(p1.getPosition()) );
-//    }
+    public void setName(String newName){
+        this.playerName = newName;
+    }
 }
