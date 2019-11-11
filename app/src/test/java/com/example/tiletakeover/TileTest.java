@@ -4,6 +4,7 @@ package com.example.tiletakeover;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 
@@ -72,7 +73,7 @@ public class TileTest {
 
     /**
      * tests whether or not we can set an active player onto a tile.
-     * tests both setActivePlayer and getActivePlayer
+     * tests the get has player method, and both setActivePlayer and getActivePlayer
      */
     @Test
     public void setActivePlayer(){
@@ -82,13 +83,16 @@ public class TileTest {
         Board[1].setHasPlayer(true);
         Board[1].setActivePlayer(P1);
 
+
         assertEquals(P1, Board[1].getActivePlayer());
+        assertTrue(Board[1].getHasPlayer());
     }
 
 
     /**
      * Tests whether or not a tile's position can be changed
      * uses setPosition and getPosition are tested
+     * also tests setWinningTile getWinningTile by checking that getWinningTile returns true
      */
     @Test
     public void setPosition()
@@ -96,7 +100,30 @@ public class TileTest {
         Tile testTile = new Tile();
         assertEquals(0, testTile.getPosition());
         testTile.setPosition(24);
+        testTile.setWinningTile(true);
         assertEquals(24, testTile.getPosition());
+        assertTrue(testTile.getWinningTile());
+
+
     }
 
+    /**
+     * tests getPlatform method. Iterates over the created array, searching for platforms
+     * will add one to the counter if the loop encounters a platform.
+     *
+     * there are 12 total platforms
+     */
+    @Test
+    public void getPlatform(){
+
+        int counter = 0;
+
+        for (int i = 0; i < Board.length; i++){
+            if (Board[i].getIsPlatform()){
+                counter++;
+            }
+        }
+
+        assertEquals(12, counter);
+    }
 }
