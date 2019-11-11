@@ -37,7 +37,7 @@ public class PlayerTest {
     @Test
     public void checkWin2()
     {
-        P1.setPosition(25);
+        P1.setPosition(24);
         assertTrue(P1.checkWin());
     }
 
@@ -58,7 +58,7 @@ public class PlayerTest {
    public void setPosition()
    {
         P1.setPosition(25);
-        assertEquals(25, P1.getPosition());
+        assertEquals(24, P1.getPosition());
    }
 
     /**

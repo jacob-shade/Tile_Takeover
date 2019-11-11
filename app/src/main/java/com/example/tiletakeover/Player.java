@@ -6,7 +6,7 @@ public class Player {
      * the winning tile position is 25, within a array of 49 tiles
      * the total number of possible moves in any direction is 8, two for each direction
      */
-    private final int WIN_TILE_POS = 25;
+    private final int WIN_TILE_POS = 24;
     private final int MAX_NUM_MOVES = 8;
 
     /**
