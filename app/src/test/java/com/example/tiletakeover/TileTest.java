@@ -18,13 +18,18 @@ public class TileTest {
 
     private Player P1 = new Player("Player1");
     private Player P2 = new Player("Player2");
-    private Tile[]Board = new Tile[48];
+    private Tile[]Board = new Tile[49];
 
+    /**
+     *
+     * creates a array of tiles, and assigns some tiles as platforms, and 2 as platforms that
+     * will hold players.
+     */
     @Before
     public void setUp(){
 
 
-        for (int i = 0; i <= 48; i++){
+        for (int i = 0; i < 49; i++){
 
             Tile t = new Tile();
             t.setPosition(i);
@@ -78,6 +83,20 @@ public class TileTest {
         Board[1].setActivePlayer(P1);
 
         assertEquals(P1, Board[1].getActivePlayer());
+    }
+
+
+    /**
+     * Tests whether or not a tile's position can be changed
+     * uses setPosition and getPosition are tested
+     */
+    @Test
+    public void setPosition()
+    {
+        Tile testTile = new Tile();
+        assertEquals(0, testTile.getPosition());
+        testTile.setPosition(24);
+        assertEquals(24, testTile.getPosition());
     }
 
 }
