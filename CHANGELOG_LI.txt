@@ -1,0 +1,11 @@
+October 25th 2019
+  Started second implementation using java and JFrame GUI
+  
+November 1st 2019
+  Finished GUI.java Class; fully displays all tiles, players, winning tile, and platforms
+  
+  
+November 12th 2019
+  Finished the movemnent aspect of the game
+  
+  
