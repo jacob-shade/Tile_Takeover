@@ -8,10 +8,8 @@ public class MainActivity extends AppCompatActivity {
     private static Board gameBoard;
     private static Context mContext;
 
-    public static final String UP = "up";
-    public static final String DOWN = "down";
-    public static final String RIGHT = "right";
-    public static final String LEFT = "left";
+    public static final String UP = "up", DOWN = "down",
+            RIGHT = "right", LEFT = "left";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

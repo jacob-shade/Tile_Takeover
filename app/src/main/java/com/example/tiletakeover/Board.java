@@ -50,11 +50,11 @@ public class Board {
                 boardTiles[i].setHasPlayer();
                 boardTiles[i].setIsPlatform();
                 //boardTiles[i].setActivePlayer();
+            } else if (i == 24) {
+                boardTiles[i].setWinningTile();                     //winning tile
             } else if (i == 1 || i == 5 || i == 6 || i == 7 || i == 13 || i == 35 ||
                     i == 41 || i == 42 || i == 43 || i == 47) {     //platform tile
                 boardTiles[i].setIsPlatform();
-            } else if (i == 24) {
-                boardTiles[i].setWinningTile();
             }
         }
     }
@@ -114,7 +114,7 @@ public class Board {
                     id == 41 || id == 42 || id == 43 || id == 47) {     //platform tile
                 button.setBackgroundResource(R.drawable.platform);
             } else if (id == 24) {
-                button.setBackgroundResource(R.drawable.empty);
+                button.setBackgroundResource(R.drawable.win);
             } else {                                      //empty tile
                 button.setBackgroundResource(R.drawable.empty);
             }

@@ -16,17 +16,16 @@ public class Player {
      * winTile is a flag that will be used to show that the player has landed on the winning tile
      * pass is a flag that will determine when a player's turn ends
      */
-    private String playerName;
+    private int playerId;
     private int position;
     private int[] posMoves;
     private boolean winTile;
 
     /**
      * constructor for the player object
-     * @param name: initializes the player's name when the object is created
      */
-    public Player(String name, int position) {
-        this.playerName = name;
+    public Player(int id, int position) {
+        this.playerId = id;
         this.position = position;
         posMoves = new int [8];
         winTile = false;
@@ -62,8 +61,8 @@ public class Player {
      *  method used to get player's name
      * @return player's assigned name
      */
-    public String getPlayerName(){
-        return this.playerName;
+    public int getPlayerId(){
+        return this.playerId;
     }
 
     /**
@@ -79,16 +78,6 @@ public class Player {
      * @return the player's current position on the board
      */
     public int getPosition(){
-
         return this.position;
-    }
-
-    /**
-     *
-     * sets the player's name
-     */
-
-    public void setName(String newName){
-        this.playerName = newName;
     }
 }
