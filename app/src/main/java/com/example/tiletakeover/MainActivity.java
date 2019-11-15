@@ -152,14 +152,15 @@ public class MainActivity extends AppCompatActivity {
             //((TileButton) mason.board[x1]).setColor(Color.ORANGE);
             System.out.println("Wall is on next up");
             return 1;
-        } else if (gameBoard.getBoardTiles()[position + 1].getIsPlatform()) {
-            if (gameBoard.getBoardTiles()[position + 1].getHasPlayer()) {
+        } else if (gameBoard.getBoardTiles()[position - 7].getIsPlatform()) {
+            if (gameBoard.getBoardTiles()[position - 7].getHasPlayer()) {
                 //((TileButton) mason.board[x1]).setColor(Color.ORANGE);
                 return 1;
             }
             walk = true;
         }
         if (walk == true) {
+            System.out.println("Destination: " + (x1-7));
             swap(context, position, x1-7);
         } else {
             int z = findUpper(x1, position);
