@@ -25,9 +25,9 @@ public class Player {
      * constructor for the player object
      * @param name: initializes the player's name when the object is created
      */
-    public Player(String name) {
+    public Player(String name, int position) {
         this.playerName = name;
-        this.position = 0;
+        this.position = position;
         posMoves = new int [8];
         winTile = false;
     }

@@ -50,6 +50,7 @@ public class GestureDetectGridView extends GridView {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                    float velocityY) {
+                //int position;
                 final int position = GestureDetectGridView.this.pointToPosition
                         (Math.round(e1.getX()), Math.round(e1.getY()));
 

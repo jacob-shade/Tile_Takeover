@@ -11,7 +11,8 @@ public class Board {
 
     private final int COL;
     private int DIMENSIONS;
-    private static String[] boardTiles;
+    private static Tile[] boardTiles;
+    private Player playerOne;
     private Activity activity;
     private Context mContext;
     private static GestureDetectGridView mGridView;
@@ -23,9 +24,10 @@ public class Board {
     public Board(Activity activity, Context context, int col) {
         this.COL = col;
         this.DIMENSIONS = col * col;
-        this.boardTiles = new String[DIMENSIONS];
+        this.boardTiles = new Tile[DIMENSIONS];
         this.activity = activity;
         this.mContext = context;
+        //this.playerOne("One", 0);
         populateBoard();
         setDimensions();
     }
@@ -39,7 +41,21 @@ public class Board {
         mGridView.setNumColumns(COL);
 
         for(int i = 0; i < DIMENSIONS; i++) {
-            boardTiles[i] = String.valueOf(i);
+            boardTiles[i] = new Tile(i);
+            if(i == 0) {                                            //player 1
+                boardTiles[i].setHasPlayer();
+                boardTiles[i].setIsPlatform();
+                //boardTiles[i].setActivePlayer();
+            } else if(i == 48) {                                    //player2
+                boardTiles[i].setHasPlayer();
+                boardTiles[i].setIsPlatform();
+                //boardTiles[i].setActivePlayer();
+            } else if (i == 1 || i == 5 || i == 6 || i == 7 || i == 13 || i == 35 ||
+                    i == 41 || i == 42 || i == 43 || i == 47) {     //platform tile
+                boardTiles[i].setIsPlatform();
+            } else if (i == 24) {
+                boardTiles[i].setWinningTile();
+            }
         }
     }
 
@@ -86,37 +102,20 @@ public class Board {
      * @param context
      */
     public static void display(Context context) {
+        int id = 0;
         ArrayList<Button> buttons = new ArrayList<>();
         Button button;
         for(int i = 0; i < boardTiles.length; i++) {
             button = new Button(context);
-            if(boardTiles[i].equals("0") || boardTiles[i].equals("48")) {
+            id = boardTiles[i].getTileId();
+            if(id == 0 || id == 48) {                                    //players
                 button.setBackgroundResource(R.drawable.player);
-            } else if (boardTiles[i].equals("1") || boardTiles[i].equals("5") ||
-                    boardTiles[i].equals("6") || boardTiles[i].equals("7") ||
-                    boardTiles[i].equals("13") || boardTiles[i].equals("35") ||
-                    boardTiles[i].equals("41") || boardTiles[i].equals("42") ||
-                    boardTiles[i].equals("43") || boardTiles[i].equals("47")) {
+            } else if (id == 1 || id == 5 || id == 6 || id == 7 || id == 13 || id == 35 ||
+                    id == 41 || id == 42 || id == 43 || id == 47) {     //platform tile
                 button.setBackgroundResource(R.drawable.platform);
-            } else if (boardTiles[i].equals("2") || boardTiles[i].equals("3") ||
-                    boardTiles[i].equals("4") || boardTiles[i].equals("8") ||
-                    boardTiles[i].equals("9") || boardTiles[i].equals("10") ||
-                    boardTiles[i].equals("11") || boardTiles[i].equals("12") ||
-                    boardTiles[i].equals("14") || boardTiles[i].equals("15") ||
-                    boardTiles[i].equals("16") || boardTiles[i].equals("17") ||
-                    boardTiles[i].equals("18") || boardTiles[i].equals("19") ||
-                    boardTiles[i].equals("20") || boardTiles[i].equals("21") ||
-                    boardTiles[i].equals("22") || boardTiles[i].equals("23") ||
-                    boardTiles[i].equals("24") || boardTiles[i].equals("25") ||
-                    boardTiles[i].equals("26") || boardTiles[i].equals("27") ||
-                    boardTiles[i].equals("28") || boardTiles[i].equals("29") ||
-                    boardTiles[i].equals("30") || boardTiles[i].equals("31") ||
-                    boardTiles[i].equals("32") || boardTiles[i].equals("33") ||
-                    boardTiles[i].equals("34") || boardTiles[i].equals("36") ||
-                    boardTiles[i].equals("37") || boardTiles[i].equals("38") ||
-                    boardTiles[i].equals("39") || boardTiles[i].equals("40") ||
-                    boardTiles[i].equals("44") || boardTiles[i].equals("45") ||
-                    boardTiles[i].equals("46")){
+            } else if (id == 24) {
+                button.setBackgroundResource(R.drawable.empty);
+            } else {                                      //empty tile
                 button.setBackgroundResource(R.drawable.empty);
             }
             buttons.add(button);
@@ -140,5 +139,15 @@ public class Board {
      * Gets the array of board tiles.
      * @return this.boardTiles
      */
-    String[] getBoardTiles() {return this.boardTiles;}
+    Tile[] getBoardTiles() {return this.boardTiles;}
 }
+
+/*
+i == 2 || i == 3 || i == 4 || i == 8 || i == 9 || i == 10 ||
+                    i == 11 || i == 12 || i == 14 || i == 15 || i == 16 || i == 17 ||
+                    i == 18 || i == 19 || i == 20 || i == 21 || i == 22 || i == 23 ||
+                    i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 30 ||
+                    i == 31 || i == 32 || i == 33 || i == 34 || i == 36 || i == 37 ||
+                    i == 38 || i == 39 || i == 39 || i == 40 || i == 44 || i == 45 ||
+                    i == 46)
+ */

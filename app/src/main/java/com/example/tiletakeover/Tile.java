@@ -14,6 +14,7 @@ public class Tile {
     private boolean hasPlayer;
     private boolean winningTile;
     private boolean isPlatform;
+    private int tileId;
     private int position;
 
 
@@ -21,12 +22,12 @@ public class Tile {
      * initializes the tile object, to later be modified as needed throughout the game
      *
      */
-    public Tile(){
+    public Tile(int tileId){
         this.activePlayer = null;
         this.hasPlayer = false;
-        this.winningTile = false;
+        this.winningTile = false; //24
         this.isPlatform = false;
-
+        this.tileId = tileId;
     }
 
     /**
@@ -43,6 +44,14 @@ public class Tile {
      */
     void setActivePlayer(Player P){
         this.activePlayer = P;
+    }
+
+    int getTileId() {
+        return this.tileId;
+    }
+
+    void setNewId(int newId) {
+        this.tileId = newId;
     }
 
     /**
@@ -64,10 +73,9 @@ public class Tile {
 
     /**
      * sets the flag of wining tile dependent on what is passed in
-     * @param t boolean that represents whether or not the tile is the wining tile or not
      */
-    void setWinningTile(boolean t){
-        this.winningTile = t;
+    void setWinningTile(){
+        this.winningTile = true;
     }
 
     /**
@@ -87,20 +95,17 @@ public class Tile {
 
     /**
      * sets the hasPlayer flag to indicate whether or not there is a player on the tile
-     * @param t boolean variable that updates the hasPlayer flag
      */
-    void setHasPlayer(boolean t){
-        this.hasPlayer = t;
+    void setHasPlayer(){
+        this.hasPlayer = true;
     }
 
     /**
      * sets the isPlatform flag to indicate whether or not the tile is a platform
-     * @param t the boolean that will update our flag
      */
-    void setIsPlatform(boolean t){
-        this.isPlatform = t;
+    void setIsPlatform(){
+        this.isPlatform = true;
     }
-
 
     /**
      *
