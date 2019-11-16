@@ -1,61 +1,42 @@
 package com.example.tiletakeover;
 
+/**
+ * Player class holds information about each player.
+ */
 public class Player {
 
     /**
-     * the winning tile position is 25, within a array of 49 tiles
-     * the total number of possible moves in any direction is 8, two for each direction
-     */
-
-    /**
-     * playerName represents the name that will be displayed for each player
-     * position represents the integer position of each player on the board
-     * int[]posMoves represents all of the possible legal moves for the current player
-     * winTile is a flag that will be used to show that the player has landed on the winning tile
-     * pass is a flag that will determine when a player's turn ends
+     * playerId represents the name that will be displayed for each player.
+     * tileId   represents the integer id of each player on the board.
+     * score    represents the players number of games won.
      */
     private int playerId;
     private int tileId;
-    private int[] posMoves;
-    private boolean winTile;
+    private int position;
+    private int score;
 
     /**
-     * constructor for the player object
+     * Constructor for the Player class.
      */
-    public Player(int playerId, int tileId) {
+    public Player(int playerId, int tileId, int pos) {
         this.playerId = playerId;
-        this.tileId = tileId;
-        posMoves = new int [8];
-        winTile = false;
+        this.tileId   = tileId;
+        this.position = pos;
+        this.score    = 0;
     }
 
     /**
-     * checks the winTile flag, which indicates if the winning tile has been achieved
-     * if the winning tile has been achieved, winTile will be set to true, otherwise,
-     * it will be set to false
-     *
-     * @return the updated winTile flag
+     * Gets the Player's id.
+     * @return player's id.
      */
-    /*public boolean checkWin() {
-        if (this.position == WIN_TILE_POS) {
-            this.winTile = true;
-        }
-        return this.winTile;
-    }*/
+    public int getPlayerId(){ return this.playerId; }
 
     /**
-     *  method used to get player's name
-     * @return player's assigned name
+     * Gets the Player's Tile id.
+     * @return the Player's Tile id.
      */
-    public int getPlayerId(){
-        return this.playerId;
-    }
+    public int getTileId(){ return this.tileId; }
 
-    /**
-    /**
-     * @return the player's current position on the board
-     */
-    public int getTileId(){
-        return this.tileId;
-    }
+    public int getPosition() { return  this.position; }
+    public void setPosition(int pos) { this.position = pos; }
 }

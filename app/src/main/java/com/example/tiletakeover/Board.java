@@ -15,6 +15,7 @@ public class Board {
     private Player playerOne;
     private Player playerTwo;
     private int playersTurn;
+    private int currentPlayerPosition;
     private Activity activity;
     private Context mContext;
     private static GestureDetectGridView mGridView;
@@ -29,16 +30,16 @@ public class Board {
         this.boardTiles = new Tile[DIMENSIONS];
         this.activity = activity;
         this.mContext = context;
-        this.playerOne = new Player(1, 0);
-        this.playerTwo = new Player(2, 1);
-        playersTurn = 1;
+        this.playerOne = new Player(1, 0, 0);
+        this.playerTwo = new Player(2, 1, 48);
+        this.playersTurn = 1;
+        this.currentPlayerPosition = 0;
         populateBoard();
         setDimensions();
     }
 
     /**
-     * Populates the board with DIMENSIONS number of tiles.
-     * Stores string values for each of the tiles.
+     * Populates the board with DIMENSIONS number of Tile.
      */
     private void populateBoard() {
         mGridView = activity.findViewById(R.id.grid);
@@ -80,12 +81,13 @@ public class Board {
 
     /**
      * Gets the height of the status bar.
-     * @param context
-     * @return height
+     * @param context allows access of the height of the status bar.
+     * @return height of the status bar.
      */
     private int getStatusBarHeight(Context context) {
         int height = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimien", "android");
+        int resourceId = context.getResources()
+                .getIdentifier("status_bar_height", "dimien", "android");
         if(resourceId > 0) {
             height = context.getResources().getDimensionPixelSize(resourceId);
         }
@@ -94,7 +96,7 @@ public class Board {
 
     /**
      * Displays the buttons according to their String value.
-     * @param context
+     * @param context used for adding the buttons to display to screen.
      */
     public static void display(Context context) {
         int id = 0;
@@ -117,6 +119,25 @@ public class Board {
         }
         mGridView.setAdapter(new CustomAdapter(buttons, mTileWidth, mTileHeight));
     }
+
+    public void endTurn() {
+        if(this.playersTurn == 1) {
+            this.playersTurn = 2;
+            this.currentPlayerPosition = playerTwo.getPosition();
+        } else {
+            this.playersTurn = 1;
+            this.currentPlayerPosition = playerOne.getPosition();
+        }
+    }
+
+    public int getPlayersTurn() { return this.playersTurn; }
+
+    public int getCurrentPlayerPosition() {
+        return this.currentPlayerPosition;
+    }
+
+    public Player getPlayerOne() { return playerOne; }
+    public Player getPlayerTwo() { return playerTwo; }
 
     /**
      * Gets the array of board tiles.
