@@ -24,7 +24,7 @@ public class CustomAdapter extends BaseAdapter {
      * @param tileWidth the width of each tile.
      * @param tileHeight the height of each tile.
      */
-    public CustomAdapter(ArrayList<Button> buttons, int tileWidth, int tileHeight) {
+    CustomAdapter(ArrayList<Button> buttons, int tileWidth, int tileHeight) {
         mButtons    = buttons;
         mTileWidth  = tileWidth;
         mTileHeight = tileHeight;
@@ -35,9 +35,7 @@ public class CustomAdapter extends BaseAdapter {
      * @return the number of buttons.
      */
     @Override
-    public int getCount() {
-        return mButtons.size();
-    }
+    public int getCount() { return mButtons.size(); }
 
     /**
      * Gets a Button at the desired position.
@@ -45,9 +43,7 @@ public class CustomAdapter extends BaseAdapter {
      * @return a Button at position.
      */
     @Override
-    public Object getItem(int position) {
-        return mButtons.get(position);
-    }
+    public Object getItem(int position) { return mButtons.get(position); }
 
     /**
      * The id of each position is the position itself.
@@ -55,9 +51,7 @@ public class CustomAdapter extends BaseAdapter {
      * @return the position given.
      */
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public long getItemId(int position) { return position; }
 
     /**
      * Gets the Button at a desired position. Sets the Button's dimensions for viewing.
@@ -80,4 +74,3 @@ public class CustomAdapter extends BaseAdapter {
         return button;
     }
 }
-

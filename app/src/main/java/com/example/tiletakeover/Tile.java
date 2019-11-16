@@ -1,14 +1,17 @@
 package com.example.tiletakeover;
 
-public class Tile {
+/**
+ * Tile class handles information about each individual tile and holds a Player if needed.
+ */
+class Tile {
 
     /**
-     * activePlayer represents the player currently residing on a tile
-     * hasPlayer is a flag that is set to true if there is a player on a tile, else false.
-     * winningTile is a flag that is set only when the tile is in the winning position.
-     *
-     * isPlatform is a flag that indicates whether or not a tile is just a tile (no active player
-     * and not a platform) or a platform (has active player)
+     * activePlayer represents the player currently residing on a Tile.
+     * hasPlayer    is a flag that is set to true if there is a player on a tile, else false.
+     * winningTile  is a flag that is set only when the tile is in the winning position.
+     * isPlatform   is a flag that indicates whether or not a Tile is a platform or empty.
+     * tileId       represents an id for each tile.
+     * position     represents a position on the Board for this Tile.
      */
     private Player activePlayer;
     private boolean hasPlayer;
@@ -19,99 +22,77 @@ public class Tile {
 
 
     /**
-     * initializes the tile object, to later be modified as needed throughout the game
-     *
+     * Constructor for Tile class.
+     * Everything is set to false upon initialization.
      */
-    public Tile(int tileId){
+    Tile(int tileId){
         this.activePlayer = null;
         this.hasPlayer = false;
-        this.winningTile = false; //24
+        this.winningTile = false;
         this.isPlatform = false;
         this.tileId = tileId;
     }
 
     /**
-     * returns the active player currently on the tile
+     * Gets the Player that is on this Tile.
+     * @return activePlayer Player that is on this Tile.
      */
-    Player getActivePlayer(){
-        return this.activePlayer;
-    }
+    Player getActivePlayer(){ return this.activePlayer; }
 
     /**
-     * sets the Active player for the tile
-     * @param P is the player who will become active on the tile
+     * Sets the active Player for the Tile.
+     * @param P is the Player who will become active on this Tile.
      */
-    void setActivePlayer(Player P){
-        this.activePlayer = P;
-    }
-
-    int getTileId() {
-        return this.tileId;
-    }
-
-    void setNewId(int newId) {
-        this.tileId = newId;
-    }
+    void setActivePlayer(Player P){ this.activePlayer = P; }
 
     /**
-     * sets the position that the tile holds on the board
-     * @param pos is the position that is assigned to the tile, given from the board
+     * Gets the id of this Tile.
+     * @return tileId the id of this Tile.
      */
-    void setPosition(int pos){
-        this.position = pos;
-    }
-
+    int getTileId() { return this.tileId; }
 
     /**
-     *
-     * @return the position of the tile
+     * Sets the position that the Tile holds on the Board.
+     * @param pos is the position that is assigned to the Tile.
      */
-    int getPosition(){
-        return this.position;
-    }
+    void setPosition(int pos){ this.position = pos; }
 
     /**
-     * sets the flag of wining tile dependent on what is passed in
+     * Gets the position of this Tile.
+     * @return the position of this Tile.
      */
-    void setWinningTile(){
-        this.winningTile = true;
-    }
+    int getPosition(){ return this.position; }
 
     /**
-     *
-     * @return whether or not the tile is a winning tile
+     * Makes the current Tile the winning Tile.
      */
-    boolean getWinningTile(){
-        return this.winningTile;
-    }
-    /**
-     *
-     * @return whether or not the tile has a player currently on it
-     */
-    boolean getHasPlayer(){
-        return this.hasPlayer;
-    }
+    void setWinningTile(){ this.winningTile = true; }
 
     /**
-     * sets the hasPlayer flag to indicate whether or not there is a player on the tile
+     * Determines if this Tile is the winning Tile.
+     * @return true if this is the winning Tile.
      */
-    void setHasPlayer(){
-        this.hasPlayer = true;
-    }
+    boolean isWinningTile(){ return this.winningTile; }
 
     /**
-     * sets the isPlatform flag to indicate whether or not the tile is a platform
+     * Determines if this Tile has a Player on it.
+     * @return true if this Tile currently has a Player on it.
      */
-    void setIsPlatform(){
-        this.isPlatform = true;
-    }
+    boolean getHasPlayer(){ return this.hasPlayer; }
 
     /**
-     *
-     * @return whether or not a tile is a platform
+     * Sets this Tile as a Player Tile.
      */
-    boolean getIsPlatform(){
-        return this.isPlatform;
-    }
+    void setHasPlayer(){ this.hasPlayer = true; }
 
+    /**
+     * Sets this Tile as a platform Tile.
+     */
+    void setIsPlatform(){ this.isPlatform = true; }
+
+    /**
+     * Determines if this Tile is a platform Tile.
+     * @return true if this Tile is a platform Tile.
+     */
+    boolean getIsPlatform(){ return this.isPlatform; }
 }

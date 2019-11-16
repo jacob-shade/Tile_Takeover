@@ -9,32 +9,55 @@ import android.widget.GridView;
  * GestureDetectGridView class takes the directional input from the user.
  */
 public class GestureDetectGridView extends GridView {
+
     /**
-     *
+     *  gDetector                represents the gesture or swipe detector.
+     *  mFlingConfirmed          represents whether or not the input counts as a swipe or fling.
+     *  mTouchX                  represents the horizontal input from the user.
+     *  mTouchY                  represents the vertical input from the user.
+     *  SWIPE_MIN_DISTANCE       represents the distance the user must swipe to count as a fling.
+     *  WIPE_MAX_OFF_PATH        represents the error distance allowed of a swipe in a direction.
+     *  SWIPE_THRESHOLD_VELOCITY represents the velocity the user must input to count as a fling.
      */
     private GestureDetector gDetector;
     private boolean mFlingConfirmed = false;
     private float mTouchX;
     private float mTouchY;
-    private static final int SWIPE_MIN_DISTANCE = 100;
+    private static final int SWIPE_MIN_DISTANCE = 65;
     private static final int SWIPE_MAX_OFF_PATH = 100;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 100;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 50;
 
+    /**
+     * Constructor for GestureDetectGridView class.
+     * @param context of the screen.
+     */
     public GestureDetectGridView(Context context) {
         super(context);
         init(context);
     }
 
+    /**
+     * Constructor for GestureDetectGridView class.
+     * @param context of the screen.
+     */
     public GestureDetectGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
+    /**
+     * Constructor for GestureDetectGridView class.
+     * @param context of the screen.
+     */
     public GestureDetectGridView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
+    /**
+     * Finds the direction the user is swiping.
+     * @param context current context of the screen.
+     */
     private void init(final Context context) {
         gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
@@ -45,8 +68,6 @@ public class GestureDetectGridView extends GridView {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                    float velocityY) {
-                //final int position = GestureDetectGridView.this.pointToPosition
-                        //(Math.round(e1.getX()), Math.round(e1.getY()));
                 if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
                     if (Math.abs(e1.getX() - e2.getX()) > SWIPE_MAX_OFF_PATH
                             || Math.abs(velocityY) < SWIPE_THRESHOLD_VELOCITY) {
@@ -72,11 +93,15 @@ public class GestureDetectGridView extends GridView {
         });
     }
 
+    /**
+     * Determines if a user has tried to swipe or fling.
+     * @param ev swipe input from user.
+     * @return true if a fling has been confirmed.
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getActionMasked();
         gDetector.onTouchEvent(ev);
-
         if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
             mFlingConfirmed = false;
         } else if (action == MotionEvent.ACTION_DOWN) {
@@ -96,9 +121,12 @@ public class GestureDetectGridView extends GridView {
         return super.onInterceptTouchEvent(ev);
     }
 
+    /**
+     * Checks if an input event happened.
+     * @param ev input event from user
+     * @return true if an event happened.
+     */
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        return gDetector.onTouchEvent(ev);
-    }
+    public boolean onTouchEvent(MotionEvent ev) { return gDetector.onTouchEvent(ev); }
 }
 

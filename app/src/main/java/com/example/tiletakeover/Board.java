@@ -1,45 +1,57 @@
 package com.example.tiletakeover;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-
 import java.util.ArrayList;
 
-public class Board {
+/**
+ * Board class represents the game board with all Tiles and Players.
+ */
+class Board {
 
+    /**
+     *  COL         represents the columns of the Board.
+     *  DIMENSIONS  represents the dimensions based on the columns*columns
+     *  boardTiles  the array of Tiles that make up the Board.
+     *  playerOne   represents the Player that starts the game.
+     *  playerTwo   represents the other Player that follows playerOne.
+     *  playersTurn represents the player whose turn it is.
+     *  activity    Activity passed from the MainActivity so we can call findViewById(R.id.grid).
+     *  mContext    used to update the View of the application.
+     *  mGridView   takes input from the user(swipes).
+     *  mTileWidth  width of each Tile to display according to the size of the screen.
+     *  mTileHeight height of each Tile to display according to the size of the screen.
+     */
     private final int COL;
     private int DIMENSIONS;
     private static Tile[] boardTiles;
     private Player playerOne;
     private Player playerTwo;
     private int playersTurn;
-    private int currentPlayerPosition;
     private Activity activity;
     private Context mContext;
     private static GestureDetectGridView mGridView;
     private static int mTileWidth, mTileHeight;
 
     /**
-     * Constructor for the Gameboard class.
+     * Constructor for the Board class.
      */
-    public Board(Activity activity, Context context, int col) {
+    Board(Activity activity, Context context, int col) {
         this.COL = col;
         this.DIMENSIONS = col * col;
-        this.boardTiles = new Tile[DIMENSIONS];
+        boardTiles = new Tile[DIMENSIONS];
         this.activity = activity;
         this.mContext = context;
-        this.playerOne = new Player(1, 0, 0);
-        this.playerTwo = new Player(2, 1, 48);
+        this.playerOne = new Player(0, 0);
+        this.playerTwo = new Player(48, 48);
         this.playersTurn = 1;
-        this.currentPlayerPosition = 0;
         populateBoard();
         setDimensions();
     }
 
     /**
-     * Populates the board with DIMENSIONS number of Tile.
+     * Populates the board with DIMENSIONS number of Tiles.
      */
     private void populateBoard() {
         mGridView = activity.findViewById(R.id.grid);
@@ -64,7 +76,7 @@ public class Board {
     }
 
     /**
-     * Sets the dimensions of each tile and displays them
+     * Sets the dimensions of each tile and displays them.
      */
     private void setDimensions() {
         ViewTreeObserver vto = mGridView.getViewTreeObserver();
@@ -98,21 +110,21 @@ public class Board {
      * Displays the buttons according to their String value.
      * @param context used for adding the buttons to display to screen.
      */
-    public static void display(Context context) {
-        int id = 0;
+    static void display(Context context) {
+        int id;
         ArrayList<Button> buttons = new ArrayList<>();
         Button button;
-        for(int i = 0; i < boardTiles.length; i++) {
+        for (Tile tile : boardTiles) {
             button = new Button(context);
-            id = boardTiles[i].getTileId();
-            if(id == 0 || id == 48) {                                    //players
+            id = tile.getTileId();
+            if(id == 0 || id == 48) {
                 button.setBackgroundResource(R.drawable.player);
             } else if (id == 1 || id == 5 || id == 6 || id == 7 || id == 13 || id == 35 ||
-                    id == 41 || id == 42 || id == 43 || id == 47) {     //platform tile
+                    id == 41 || id == 42 || id == 43 || id == 47) {
                 button.setBackgroundResource(R.drawable.platform);
             } else if (id == 24) {
                 button.setBackgroundResource(R.drawable.win);
-            } else {                                      //empty tile
+            } else {
                 button.setBackgroundResource(R.drawable.empty);
             }
             buttons.add(button);
@@ -120,28 +132,38 @@ public class Board {
         mGridView.setAdapter(new CustomAdapter(buttons, mTileWidth, mTileHeight));
     }
 
-    public void endTurn() {
+    /**
+     * Switches the active Player.
+     */
+    void endTurn() {
         if(this.playersTurn == 1) {
             this.playersTurn = 2;
-            this.currentPlayerPosition = playerTwo.getPosition();
         } else {
             this.playersTurn = 1;
-            this.currentPlayerPosition = playerOne.getPosition();
         }
     }
 
-    public int getPlayersTurn() { return this.playersTurn; }
-
-    public int getCurrentPlayerPosition() {
-        return this.currentPlayerPosition;
-    }
-
-    public Player getPlayerOne() { return playerOne; }
-    public Player getPlayerTwo() { return playerTwo; }
+    /**
+     * Gets the active Players turn.
+     * @return playersTurn int representation of the active Player.
+     */
+    int getPlayersTurn() { return this.playersTurn; }
 
     /**
-     * Gets the array of board tiles.
-     * @return this.boardTiles
+     * Gets Player one.
+     * @return playerOne.
      */
-    public Tile[] getBoardTiles() {return this.boardTiles;}
+    Player getPlayerOne() { return playerOne; }
+
+    /**
+     * Gets Player two.
+     * @return playerTwo.
+     */
+    Player getPlayerTwo() { return playerTwo; }
+
+    /**
+     * Gets the array of Tiles that represents the board.
+     * @return boardTiles
+     */
+    Tile[] getBoardTiles() {return boardTiles;}
 }

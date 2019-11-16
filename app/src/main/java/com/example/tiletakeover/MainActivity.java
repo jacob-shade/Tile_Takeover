@@ -3,8 +3,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
 
+/**
+ * MainActivity class is the driver for the TileTakeover application.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     *
+     */
     private final int COL = 7;
     private static Board gameBoard;
     public static final String UP = "up", DOWN = "down", RIGHT = "right", LEFT = "left";

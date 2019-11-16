@@ -3,40 +3,33 @@ package com.example.tiletakeover;
 /**
  * Player class holds information about each player.
  */
-public class Player {
+class Player {
 
     /**
      * playerId represents the name that will be displayed for each player.
-     * tileId   represents the integer id of each player on the board.
+     * position represents the players position on the Board.
      * score    represents the players number of games won.
      */
-    private int playerId;
-    private int tileId;
     private int position;
     private int score;
 
     /**
      * Constructor for the Player class.
      */
-    public Player(int playerId, int tileId, int pos) {
-        this.playerId = playerId;
-        this.tileId   = tileId;
+    Player(int tileId, int pos) {
         this.position = pos;
         this.score    = 0;
     }
 
     /**
-     * Gets the Player's id.
-     * @return player's id.
+     * Gets the Player's position.
+     * @return position of this Player.
      */
-    public int getPlayerId(){ return this.playerId; }
+    int getPosition() { return  this.position; }
 
     /**
-     * Gets the Player's Tile id.
-     * @return the Player's Tile id.
+     * Sets the new position of the player after movement.
+     * @param pos new position of the Player.
      */
-    public int getTileId(){ return this.tileId; }
-
-    public int getPosition() { return  this.position; }
-    public void setPosition(int pos) { this.position = pos; }
+    void setPosition(int pos) { this.position = pos; }
 }
