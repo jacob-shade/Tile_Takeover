@@ -37,7 +37,6 @@ public class Tile {
         return this.activePlayer;
     }
 
-
     /**
      * sets the Active player for the tile
      * @param P is the player who will become active on the tile

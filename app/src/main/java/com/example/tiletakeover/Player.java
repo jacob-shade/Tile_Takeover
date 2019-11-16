@@ -6,8 +6,6 @@ public class Player {
      * the winning tile position is 25, within a array of 49 tiles
      * the total number of possible moves in any direction is 8, two for each direction
      */
-    private final int WIN_TILE_POS = 24;
-    private final int MAX_NUM_MOVES = 8;
 
     /**
      * playerName represents the name that will be displayed for each player
@@ -17,16 +15,16 @@ public class Player {
      * pass is a flag that will determine when a player's turn ends
      */
     private int playerId;
-    private int position;
+    private int tileId;
     private int[] posMoves;
     private boolean winTile;
 
     /**
      * constructor for the player object
      */
-    public Player(int id, int position) {
-        this.playerId = id;
-        this.position = position;
+    public Player(int playerId, int tileId) {
+        this.playerId = playerId;
+        this.tileId = tileId;
         posMoves = new int [8];
         winTile = false;
     }
@@ -38,24 +36,12 @@ public class Player {
      *
      * @return the updated winTile flag
      */
-    public boolean checkWin() {
+    /*public boolean checkWin() {
         if (this.position == WIN_TILE_POS) {
             this.winTile = true;
         }
         return this.winTile;
-    }
-
-    /**
-     * used to update the possible moves for a player
-     * @param moveSet is the list of new moves
-     */
-    public void setPosMoves(int[] moveSet){
-
-    }
-
-    public void move(){
-
-    }
+    }*/
 
     /**
      *  method used to get player's name
@@ -66,18 +52,10 @@ public class Player {
     }
 
     /**
-     * used to set the active player's position.
-     * @param pos the number that will represent the position of the player
-     */
-    public void setPosition(int pos){
-        this.position = pos;
-    }
-
-    /**
     /**
      * @return the player's current position on the board
      */
-    public int getPosition(){
-        return this.position;
+    public int getTileId(){
+        return this.tileId;
     }
 }
