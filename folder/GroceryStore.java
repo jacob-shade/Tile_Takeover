@@ -13,7 +13,6 @@ public class GroceryStore<T> {
 		this.p2score = 0;
 		for (int i = 0; i < 49; i++) {
 			TileButton x = new TileButton();
-			x.setPlace(i);
 			if (i == 0 || i == 1 || i == 5 || i == 6 || i == 7 || i == 13 || i == 35 || i == 41 || i == 42 || i == 43
 					|| i == 47 || i == 48) {
 				x.setPlatform(true);
@@ -49,12 +48,6 @@ public class GroceryStore<T> {
 	public void setTurn(boolean turn) {
 		this.turn = turn;
 	}
-
-	/*
-	 * public static void main(String[] args) { GroceryStore mason = new
-	 * GroceryStore(); for (int i = 0; i < 49; i++) {
-	 * //System.out.println(((TileButton) mason.board[i]).getPlayer()); } }
-	 */
 
 	public Object[] right(GroceryStore<TileButton> board2) {
 		Object[] temp = new Object[49];

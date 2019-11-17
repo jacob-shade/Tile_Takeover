@@ -21,37 +21,47 @@ public class GUI {
 		f.setSize(720, 720);
 		f.getContentPane().setLayout(new FlowLayout());
 		makeMenu();
-		Play();
+		reset();
 		f.setVisible(true);
 	}
 
 	public void makeMenu() {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Game Menu");
-		JMenuItem play = new JMenuItem("play");
+		JMenuItem play = new JMenuItem("Start Over");
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				resetStore();
 			}
 		});
 		menu.add(play);
-		JMenuItem toturial = new JMenuItem("toturial");
+		JMenuItem toturial = new JMenuItem("Toturial");
 		toturial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				System.exit(0);
+				tutorial();
 			}
 		});
 		menu.add(toturial);
-		JMenuItem reset = new JMenuItem("reset");
+		JMenuItem reset = new JMenuItem("Reset");
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				resetStore();
+				reset();
 			}
 		});
 		menu.add(reset);
 
 		menuBar.add(menu);
 		f.setJMenuBar(menuBar);
+	}
+
+	protected void reset() {
+		makeStorePanel();
+		makeBottomButtons();
+		makeScore();
+	}
+
+	protected void tutorial() {
+		new TGUI();
 	}
 
 	public void makeStorePanel() {
@@ -69,6 +79,7 @@ public class GUI {
 			b.setContentAreaFilled(true);
 			b.setText(b.getPlayer());
 			b.setBackground(b.getColor());
+			b.setOpaque(true);
 			displayPanel.add(b);
 		}
 		f.add(displayPanel, 0);
@@ -89,6 +100,7 @@ public class GUI {
 			b.setContentAreaFilled(true);
 			b.setText(b.getPlayer());
 			b.setBackground(b.getColor());
+			b.setOpaque(true);
 			displayPanel.add(b);
 		}
 		f.add(displayPanel, 0);
@@ -213,7 +225,11 @@ public class GUI {
 	}
 
 	public void resetStore() {
+		int x = board.getP1score();
+		int y = board.getP2score();
 		makeStorePanel();
+		board.setP1score(x);
+		board.setP2score(y);
 		makeBottomButtons();
 		makeScore();
 	}
