@@ -4,8 +4,12 @@ October 25th 2019
 November 1st 2019
   Finished GUI.java Class; fully displays all tiles, players, winning tile, and platforms
   
+November 11th 2019
+  Finished board class (under the name GroceryStore) and finished tiles and player class(together under the name Tiles)
   
 November 12th 2019
   Finished the movemnent aspect of the game
-  
+
+November 17th 2019
+  Finished the tutorial aspect of the game
   
