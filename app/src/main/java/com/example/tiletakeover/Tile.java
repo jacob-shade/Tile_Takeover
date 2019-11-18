@@ -69,12 +69,6 @@ class Tile {
     void setWinningTile(){ this.winningTile = true; }
 
     /**
-     * Determines if this Tile is the winning Tile.
-     * @return true if this is the winning Tile.
-     */
-    boolean isWinningTile(){ return this.winningTile; }
-
-    /**
      * Determines if this Tile has a Player on it.
      * @return true if this Tile currently has a Player on it.
      */
@@ -96,13 +90,4 @@ class Tile {
      */
     boolean getIsPlatform(){ return this.isPlatform; }
 
-    /**
-     * Sets the Tile as an empty Tile.
-     */
-    void setEmptyTile() {
-        this.activePlayer = null;
-        this.hasPlayer = false;
-        this.winningTile = false;
-        this.isPlatform = false;
-    }
 }
