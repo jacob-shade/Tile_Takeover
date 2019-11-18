@@ -1,9 +1,40 @@
 10-29-19
   Player class:
     ADDED Player.set_position(int);
-    
+  MainActivity class;
+    ADDED .swap()
+    ADDED .moveTiles()
 11-8-2019
   Tile class:
     ADDED int position;
     ADDED Tile.setPosition(int);
     ADDED int Tile.getPosition();
+
+11-15-2019
+  Tile class:
+    ADDED int tileId
+    MODIFIED constructor to include tileId as a parameter
+    ADDED int Tile.getTileId();
+  MainActivity:
+    ADDED .right();
+    ADDED .findNext();
+    ADDED .left();
+    ADDED .findPrev();
+11-16-2019
+  MainActivity:
+    ADDED .up();
+    ADDED .findUpper();
+    ADDED .down();
+    ADDED .findBelow();
+  Player class:
+    ADDED int score
+    ADDED Player.getScore();
+  Board class:
+    ADDED int playersTurn
+    ADDED boolean playerHasWon
+    ADDED Board.endTurn();
+    ADDED Board.playerHasWon();
+    ADDED Board.getPlayersTurn();
+    ADDED Borad.getPlayerOne();
+    ADDED Board.getPlayerTwo();
+    
