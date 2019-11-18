@@ -29,6 +29,7 @@ class Board {
     private Player playerOne;
     private Player playerTwo;
     private int playersTurn;
+    private static boolean playerHasWon;
     private Activity activity;
     private Context mContext;
     private static GestureDetectGridView mGridView;
@@ -46,6 +47,19 @@ class Board {
         this.playerOne = new Player(0, 0);
         this.playerTwo = new Player(48, 48);
         this.playersTurn = 1;
+        this.playerHasWon = false;
+        populateBoard();
+        setDimensions();
+    }
+
+    /**
+     * Resets some values to play another game.
+     */
+    void resetBoard() {
+        this.playerOne = new Player(0, 0);
+        this.playerTwo = new Player(48, 48);
+        this.playersTurn = 1;
+        this.playerHasWon = false;
         populateBoard();
         setDimensions();
     }
@@ -85,7 +99,7 @@ class Board {
             public void onGlobalLayout() {
                 mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 mTileWidth = mGridView.getMeasuredWidth() / COL;
-                mTileHeight = (mGridView.getMeasuredHeight()-getStatusBarHeight(mContext)) / COL;
+                mTileHeight = (mGridView.getMeasuredHeight()-(2*getStatusBarHeight(mContext))) / COL;
                 display(mContext);
             }
         });
@@ -123,7 +137,11 @@ class Board {
                     id == 41 || id == 42 || id == 43 || id == 47) {
                 button.setBackgroundResource(R.drawable.platform);
             } else if (id == 24) {
-                button.setBackgroundResource(R.drawable.win);
+                if(playerHasWon) {
+                    button.setBackgroundResource(R.drawable.empty);
+                } else {
+                    button.setBackgroundResource(R.drawable.win);
+                }
             } else {
                 button.setBackgroundResource(R.drawable.empty);
             }
@@ -140,6 +158,18 @@ class Board {
             this.playersTurn = 2;
         } else {
             this.playersTurn = 1;
+        }
+    }
+
+    /**
+     * A winner has been found.
+     */
+    void playerHasWon() {
+        this.playerHasWon = true;
+        if(playersTurn == 1) {
+            playerOne.won();
+        } else {
+            playerTwo.won();
         }
     }
 

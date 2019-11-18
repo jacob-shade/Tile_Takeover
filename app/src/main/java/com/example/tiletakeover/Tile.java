@@ -95,4 +95,14 @@ class Tile {
      * @return true if this Tile is a platform Tile.
      */
     boolean getIsPlatform(){ return this.isPlatform; }
+
+    /**
+     * Sets the Tile as an empty Tile.
+     */
+    void setEmptyTile() {
+        this.activePlayer = null;
+        this.hasPlayer = false;
+        this.winningTile = false;
+        this.isPlatform = false;
+    }
 }

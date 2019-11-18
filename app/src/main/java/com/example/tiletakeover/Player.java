@@ -32,4 +32,11 @@ class Player {
      * @param pos new position of the Player.
      */
     void setPosition(int pos) { this.position = pos; }
+
+    /**
+     * This player has won a game so their score goes up by one.
+     */
+    void won() { this.score++; }
+
+    int getScore() { return this.score;}
 }

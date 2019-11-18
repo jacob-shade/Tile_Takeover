@@ -8,9 +8,6 @@ import android.content.Context;
  */
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     *
-     */
     private final int COL = 7;
     private static Board gameBoard;
     public static final String UP = "up", DOWN = "down", RIGHT = "right", LEFT = "left";
@@ -23,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gameBoard = new Board(this, getApplicationContext(), COL);
+        this.setTitle("Tile Takeover       P1: " + gameBoard.getPlayerOne().getScore()
+                + "    P2: " + gameBoard.getPlayerTwo().getScore());
+
     }
 
     /**
@@ -32,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
      * @param newPosition the position of the tile that is being swapped
      */
     private static void swap(Context context, int position, int newPosition) {
-        System.out.println("position: "+ position + " newPos: " +newPosition);
+        System.out.println("position: "+ position + " newPos: " + newPosition);
         Tile oldTile = gameBoard.getBoardTiles()[position];
         Tile newTile = gameBoard.getBoardTiles()[newPosition];
+        if(newPosition == 24) {
+            gameBoard.playerHasWon();
+            System.out.println("player " + gameBoard.getPlayersTurn() + " won!!!");
+        }
         gameBoard.getBoardTiles()[newPosition] = oldTile;
         gameBoard.getBoardTiles()[position] = newTile;
         if(gameBoard.getPlayersTurn() == 1) {
@@ -43,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
             gameBoard.getPlayerTwo().setPosition(newPosition);
         }
         gameBoard.display(context);
+        if(newPosition == 24) {
+            gameBoard.resetBoard();
+        }
     }
 
     /**
@@ -51,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
      * @param direction the direction the user swiped to move their player piece.
      */
     public static void moveTiles(Context context, String direction) {
-        int position = 0;
+        int position;
         if(gameBoard.getPlayersTurn() == 1) {
             position = gameBoard.getPlayerOne().getPosition();
         } else {
