@@ -3,7 +3,6 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 class TileButton extends JButton {
-	private int place;
 	private boolean person;
 	private boolean platform;
 	private Color color;
@@ -30,14 +29,6 @@ class TileButton extends JButton {
 
 	public void setPerson(boolean person) {
 		this.person = person;
-	}
-
-	public int getPlace() {
-		return place;
-	}
-
-	public void setPlace(int place) {
-		this.place = place;
 	}
 
 	public Color getColor() {
