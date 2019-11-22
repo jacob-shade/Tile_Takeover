@@ -61,7 +61,6 @@ public class TGUI {
 			ft.remove(displayPanel);
 		displayPanel = new JPanel();
 		displayPanel.setLayout(new GridLayout(7, 7));
-		//board = new GroceryStore<TileButton>();
 		for (int p = 0; p < MAX_TILE_DISPLAY; p++) {
 			TileButton b = (TileButton) groceryStore.getBoard()[p];
 			b.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));

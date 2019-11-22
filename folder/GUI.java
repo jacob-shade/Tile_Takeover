@@ -14,6 +14,7 @@ public class GUI {
 	private final int MAX_TILE_DISPLAY = 49;
 	private GroceryStore<TileButton> board = new GroceryStore<TileButton>();
 	private GroceryStore<TileButton> boardcopy = board;
+	private int counter = 0;
 
 	public GUI() {
 		f = new JFrame("Tile Take Over");
@@ -106,6 +107,28 @@ public class GUI {
 		f.add(displayPanel, 0);
 		f.revalidate();
 		makeScore();
+		new javax.swing.Timer(400, new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				if (counter == 1) {
+					buttonPanel.getComponent(1).setEnabled(true);
+					buttonPanel.getComponent(3).setEnabled(true);
+					buttonPanel.getComponent(4).setEnabled(true);
+					buttonPanel.getComponent(5).setEnabled(true);
+					((javax.swing.Timer) event.getSource()).stop();
+					counter = 0;
+					return;
+				} else {
+					step();
+				}
+			}
+			private void step() {
+				counter++;
+				buttonPanel.getComponent(1).setEnabled(false);
+				buttonPanel.getComponent(3).setEnabled(false);
+				buttonPanel.getComponent(4).setEnabled(false);
+				buttonPanel.getComponent(5).setEnabled(false);
+			}
+		}).start();
 	}
 
 	public void makeBottomButtons() {
@@ -159,18 +182,30 @@ public class GUI {
 	}
 
 	public void up() {
+		buttonPanel.getComponent(1).setEnabled(false);
+		buttonPanel.getComponent(3).setEnabled(false);
+		buttonPanel.getComponent(4).setEnabled(false);
+		buttonPanel.getComponent(5).setEnabled(false);
 		board.setBoard(board.up(board));
 		update();
 		scoreup();
 	}
 
 	public void left() {
+		buttonPanel.getComponent(1).setEnabled(false);
+		buttonPanel.getComponent(3).setEnabled(false);
+		buttonPanel.getComponent(4).setEnabled(false);
+		buttonPanel.getComponent(5).setEnabled(false);
 		board.setBoard(board.left(board));
 		update();
 		scoreup();
 	}
 
 	public void down() {
+		buttonPanel.getComponent(1).setEnabled(false);
+		buttonPanel.getComponent(3).setEnabled(false);
+		buttonPanel.getComponent(4).setEnabled(false);
+		buttonPanel.getComponent(5).setEnabled(false);
 		board.setBoard(board.down(board));
 		update();
 		scoreup();
@@ -178,6 +213,10 @@ public class GUI {
 	}
 
 	public void right() {
+		buttonPanel.getComponent(1).setEnabled(false);
+		buttonPanel.getComponent(3).setEnabled(false);
+		buttonPanel.getComponent(4).setEnabled(false);
+		buttonPanel.getComponent(5).setEnabled(false);
 		board.setBoard(board.right(board));
 		update();
 		scoreup();
@@ -212,11 +251,27 @@ public class GUI {
 			f.remove(scorePanel);
 
 		scorePanel = new JPanel();
-		scorePanel.setLayout(new GridLayout(2, 1));
+		scorePanel.setLayout(new GridLayout(2, 2));
 
+		JButton player1turn = new JButton("");
+		scorePanel.add(player1turn);
+		if(board.getTurn()==true) {
+			player1turn.setText("player 1's turn");
+		}else {
+			player1turn.setText("");
+		}
+		
 		JButton player1 = new JButton("player 1 score: " + board.getP1score() );
 		scorePanel.add(player1);
-
+		
+		JButton player2turn = new JButton("");
+		scorePanel.add(player2turn);
+		if(board.getTurn()==false) {
+			player2turn.setText("player 2's turn");
+		}else {
+			player2turn.setText("");
+		}
+		
 		JButton player2 = new JButton("player 2 score: " + board.getP2score() );
 		scorePanel.add(player2);
 
