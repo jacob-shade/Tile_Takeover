@@ -3,8 +3,6 @@ package com.example.tiletakeover;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -16,66 +14,53 @@ import static org.junit.Assert.assertTrue;
 public class PlayerTest {
 
 
-    private Player P1 = new Player("rob");
+    /**
+     * created to test multiple player Class methods
+     */
+    private Player P1 = new Player("Player 1", 0);
 
 
     /**
-     * tests the method that checks for winning condition
-     * in this case there is no win
+     * tests to see if the method returns the correct playerID
      */
     @Test
-    public void checkWin()
+    public void testGetPlayerID()
     {
-
-        assertFalse( P1.checkWin());
+        assertEquals("Player 1", P1.getPlayerID());
     }
 
     /**
-     * tests the method that checks for winning condition
-     * in this case there is a win, the player is on the winning tile
+     * tests whether or not the correct position is returned
      */
     @Test
-    public void checkWin2()
+    public void testGetPosition()
     {
-        P1.setPosition(24);
-        assertTrue(P1.checkWin());
-    }
-
-    /**
-     * tests the method that returns the player's current position
-     */
-    @Test
-    public void getPosition()
-    {
-
         assertEquals(0, P1.getPosition());
     }
 
     /**
-     * tests the method that sets the player's position
-     */
-   @Test
-   public void setPosition()
-   {
-        P1.setPosition(25);
-        assertEquals(24, P1.getPosition());
-   }
-
-    /**
-     * tests the moethod that returns the player's name
+     * tests the setPosition method.
+     * changes the position and checks for the changed position
      */
     @Test
-    public void getPlayerName()
+    public void testSetPosition()
     {
-        assertEquals("rob", P1.getPlayerName());
+        assertEquals(0,P1.getPosition());
+        P1.setPosition(1);
+        assertEquals(1, P1.getPosition());
     }
 
 
-
-//    @Test
-////    public void addition_isCorrect() {
-////        assertEquals(4, 2 + 2);
-////    }
-
+    /**
+     *  test whether or not the wins have been correctly
+     *  initialized and incremented.
+     */
+    @Test
+    public void testWon(){
+        assertEquals(0, P1.getScore());
+        P1.won();
+        P1.won();
+        assertEquals(2, P1.getScore());
+    }
 
 }

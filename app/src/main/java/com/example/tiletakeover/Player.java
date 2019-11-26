@@ -10,16 +10,27 @@ class Player {
      * position represents the players position on the Board.
      * score    represents the players number of games won.
      */
+    private String playerID;
     private int position;
     private int score;
 
     /**
      * Constructor for the Player class.
      */
-    Player(int tileId, int pos) {
+    Player(String playerID, int pos) {
+        this.playerID = playerID;
         this.position = pos;
         this.score    = 0;
     }
+
+    /**
+     * gives the player's ID
+     * (For testing purposes)
+     * @return the playerID field
+     */
+    String getPlayerID(){return this.playerID; }
+
+
 
     /**
      * Gets the Player's position.
@@ -38,5 +49,10 @@ class Player {
      */
     void won() { this.score++; }
 
+
+    /**
+     *  returns the player's total round score
+     * @return score field
+     */
     int getScore() { return this.score;}
 }

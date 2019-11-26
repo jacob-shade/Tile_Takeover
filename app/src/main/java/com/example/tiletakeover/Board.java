@@ -44,8 +44,8 @@ class Board {
         boardTiles = new Tile[DIMENSIONS];
         this.activity = activity;
         this.mContext = context;
-        this.playerOne = new Player(0, 0);
-        this.playerTwo = new Player(48, 48);
+        this.playerOne = new Player("Player 1", 0);
+        this.playerTwo = new Player("Player 2", 48);
         this.playersTurn = 1;
         this.playerHasWon = false;
         populateBoard();
@@ -56,8 +56,8 @@ class Board {
      * Resets some values to play another game.
      */
     void resetBoard() {
-        this.playerOne = new Player(0, 0);
-        this.playerTwo = new Player(48, 48);
+        this.playerOne = new Player("Player 1", 0);
+        this.playerTwo = new Player("Player 2", 48);
         this.playersTurn = 1;
         this.playerHasWon = false;
         populateBoard();
@@ -73,18 +73,18 @@ class Board {
         for(int i = 0; i < DIMENSIONS; i++) {
             boardTiles[i] = new Tile(i);
             if(i == 0) {
-                boardTiles[i].setHasPlayer();
-                boardTiles[i].setIsPlatform();
+                boardTiles[i].setHasPlayer(true);
+                boardTiles[i].setIsPlatform(true);
                 boardTiles[i].setActivePlayer(playerOne);
             } else if(i == 48) {
-                boardTiles[i].setHasPlayer();
-                boardTiles[i].setIsPlatform();
+                boardTiles[i].setHasPlayer(true);
+                boardTiles[i].setIsPlatform(true);
                 boardTiles[i].setActivePlayer(playerTwo);
             } else if (i == 24) {
                 boardTiles[i].setWinningTile();
             } else if (i == 1 || i == 5 || i == 6 || i == 7 || i == 13 ||
                     i == 35 || i == 41 || i == 42 || i == 43 || i == 47) {
-                boardTiles[i].setIsPlatform();
+                boardTiles[i].setIsPlatform(true);
             }
         }
     }

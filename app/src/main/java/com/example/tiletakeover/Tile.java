@@ -39,11 +39,15 @@ class Tile {
      */
     Player getActivePlayer(){ return this.activePlayer; }
 
+
+
     /**
      * Sets the active Player for the Tile.
      * @param P is the Player who will become active on this Tile.
      */
     void setActivePlayer(Player P){ this.activePlayer = P; }
+
+
 
     /**
      * Gets the id of this Tile.
@@ -51,11 +55,15 @@ class Tile {
      */
     int getTileId() { return this.tileId; }
 
+
+
     /**
      * Sets the position that the Tile holds on the Board.
      * @param pos is the position that is assigned to the Tile.
      */
     void setPosition(int pos){ this.position = pos; }
+
+
 
     /**
      * Gets the position of this Tile.
@@ -63,10 +71,23 @@ class Tile {
      */
     int getPosition(){ return this.position; }
 
+
+
     /**
      * Makes the current Tile the winning Tile.
      */
     void setWinningTile(){ this.winningTile = true; }
+
+
+
+    /**
+     * For testing purposes
+     * checks whether or not the tile is a winning tile
+     */
+    boolean winningTile(){
+        return this.winningTile;
+    }
+
 
     /**
      * Determines if this Tile has a Player on it.
@@ -74,20 +95,27 @@ class Tile {
      */
     boolean getHasPlayer(){ return this.hasPlayer; }
 
+
+
     /**
      * Sets this Tile as a Player Tile.
      */
-    void setHasPlayer(){ this.hasPlayer = true; }
+    void setHasPlayer(boolean p){ this.hasPlayer = p; }
+
+
 
     /**
      * Sets this Tile as a platform Tile.
      */
-    void setIsPlatform(){ this.isPlatform = true; }
+    void setIsPlatform(boolean p){ this.isPlatform = p; }
+
+
 
     /**
      * Determines if this Tile is a platform Tile.
      * @return true if this Tile is a platform Tile.
      */
     boolean getIsPlatform(){ return this.isPlatform; }
+
 
 }
